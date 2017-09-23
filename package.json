@@ -1,0 +1,28 @@
+{
+  "name": "rout-easy",
+  "version": "1.0.0",
+  "description": "Challenge for development ",
+  "main": "app.js",
+  "scripts": {
+    "test": "mocha --reporter spec --timeout 3000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/renanbym/rout-easy.git"
+  },
+  "author": "renanbym@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/renanbym/rout-easy/issues"
+  },
+  "homepage": "https://github.com/renanbym/rout-easy#readme",
+  "dependencies": {
+    "mongoose": "^4.11.12"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "chai-http": "^3.0.0",
+    "mocha": "^3.5.3",
+    "nodemon": "^1.12.1"
+  }
+}
