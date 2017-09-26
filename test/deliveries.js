@@ -9,11 +9,12 @@ chai.use(chaiHttp);
 
 describe('Deliveries ', () => {
 
-    // beforeEach( (done) => {
-    //     deliveryModel().remove({}, (error) => {
-    //         done();
-    //     });
-    // });
+    beforeEach( (done) => {
+        let deliveryModel =  mongoose.model('Delivery');
+        new deliveryModel().remove({}, (error, delivery) => {
+            done();
+        });
+    });
 
     describe('/POST deliveries', (done) =>  {
 
@@ -34,9 +35,9 @@ describe('Deliveries ', () => {
             .post('/api/deliveries')
             .send(delivery)
             .end( (err, res) => {
-                // res.should.have.status(401);
-                // res.body.status.should.be.equal('error');
-                // res.body.message.should.be.a('object');
+                res.should.have.status(401);
+                res.body.status.should.be.equal('error');
+                res.body.message.should.be.a('object');
                 done();
             });
 
@@ -111,7 +112,7 @@ describe('Deliveries ', () => {
                 }
             }
 
-            const deliveryModel =  mongoose.model('Delivery');
+            let deliveryModel =  mongoose.model('Delivery');
             let delivery = new deliveryModel(data);
 
             delivery.save( (err, delivery) => {
