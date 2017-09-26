@@ -4,7 +4,9 @@
   "description": "Challenge for development ",
   "main": "app.js",
   "scripts": {
-    "test": "mocha --reporter spec --timeout 3000"
+    "start": "NODE_ENV=production nodemon app.js"
+    ,"dev": "NODE_ENV=development nodemon app.js"
+    ,"test": "./node_modules/mocha/bin/mocha --reporter spec --timeout 7000"
   },
   "repository": {
     "type": "git",
@@ -17,7 +19,12 @@
   },
   "homepage": "https://github.com/renanbym/rout-easy#readme",
   "dependencies": {
-    "mongoose": "^4.11.12"
+    "body-parser": "^1.18.2",
+    "express": "^4.15.4",
+    "express-load": "^1.1.16",
+    "http": "0.0.0",
+    "mongoose": "^4.11.12",
+    "swig": "^1.4.2"
   },
   "devDependencies": {
     "chai": "^4.1.2",

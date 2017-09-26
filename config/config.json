@@ -1,0 +1,16 @@
+{
+
+    "development": {
+        "port": "3001"
+        ,"db_host": "mongodb://localhost:27017/challenge-development"
+    }
+    ,"test": {
+        "port": "3001"
+        ,"db_host": "mongodb://localhost:27017/challenge-teste"
+    }
+    ,"production": {
+        "port": "3001"
+        ,"db_host": "mongodb://localhost:27017/challenge"
+    }
+
+}
