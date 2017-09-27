@@ -9,16 +9,16 @@
   integrity="sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ=="
   crossorigin=""/>
   <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"
-  integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log=="
-  crossorigin=""></script>
+     integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log=="
+     crossorigin=""></script>
 
-  <link href='https://api.mapbox.com/mapbox-gl-js/v0.40.0/mapbox-gl.css' rel='stylesheet' />
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
   <link rel="stylesheet" href="/public/css/style.css" />
+
 </head>
 
-<body ng-cloak  ng-controller="AppCtrl as adsadsadasdsa">
+<body ng-cloak  ng-controller="AppCtrl as app">
 
   <div class="container-fluid">
     <div class="row justify-content-center justify-content-md-center justify-content-lg-center">
@@ -51,7 +51,7 @@
             </div>
 
             <div class="form-group">
-                <button class="col btn btn-info" type="submit"   >Cadastrar cliente</button>
+              <button class="col btn btn-info" type="submit"   >Cadastrar cliente</button>
             </div>
 
           </fieldset>
@@ -66,7 +66,7 @@
         <div id="mapid" class=""></div>
 
         <div class="col">
-          <p>Total Cliente: {{ adsadsadasdsa.total_clientes }} - Peso Total: {{adsadsadasdsa.total_peso}} kg - Total Médio {{ adsadsadasdsa.total_peso / adsadsadasdsa.total_clientes }}</p>
+          <p>Total Cliente: {{ app.total_clientes }} - Peso Total: {{app.total_peso  | number:3}} kg - Total Médio {{ app.total_peso / app.total_clientes | number:2 }}</p>
         </div>
 
         <table class="col table table-striped table-bordered table-inverse  ">
@@ -79,26 +79,25 @@
               <th>Pais</th>
               <th>Peso</th>
               <th>Lat</th>
-              <th>Long</th>
+              <th>Lon</th>
               <th>Ações</th>
             </tr>
           </thead>
 
-
           <tbody  class="col ">
-            <tr ng-if="!adsadsadasdsa.deliveries.length">
+            <tr ng-if="!app.deliveries.length">
               <td colspan="8"> Nenhuma entrega cadastrada</td>
             </tr>
 
-            <tr ng-repeat="delivery in adsadsadasdsa.deliveries" >
-              <td>{{delivery}}</td>
-              <td>{{delivery.address.address}}</td>
+            <tr ng-repeat="delivery in app.deliveries" >
+              <td>{{delivery.name}}</td>
+              <td>{{delivery.address.street}}</td>
               <td>{{delivery.address.city}}</td>
               <td>{{delivery.address.country}}</td>
-              <td>{{delivery.weight}} kg</td>
-              <td>{{delivery.address.latitude}}</td>
-              <td>{{delivery.address.longitude}}</td>
-              <td><span ng-click="adsadsadasdsa.delete(delivery)" class="badge badge-danger badge-pill hoverable">×</span></td>
+              <td>{{delivery.weight  | number:3}} kg</td>
+              <td>{{delivery.address.latitude  | number:3}}</td>
+              <td>{{delivery.address.longitude  | number:3}}</td>
+              <td><span ng-click="app.delete(delivery)" class="badge badge-danger badge-pill hoverable">×</span></td>
             </tr>
           </tbody>
         </table>
@@ -109,7 +108,6 @@
 
 
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD4ctpdtN3U1kDAprCOdBcv_n2aRQ7dgTc&libraries=places" type="text/javascript"></script>
-
   <script src="/node_modules/angular/angular.js"></script>
   <script src="/node_modules/angular-resource/angular-resource.min.js"></script>
   <script src="/public/js/app.js"></script>
@@ -117,5 +115,7 @@
   <script src="/public/js/controllers/app.controller.js"></script>
   <script src="/public/js/controllers/form.controller.js"></script>
   <script src="/public/js/services/api.service.js"></script>
+
+
 </body>
 </html>

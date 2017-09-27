@@ -3,7 +3,6 @@ const express = require('express');
 const load = require('express-load');
 const bodyParser = require('body-parser');
 const http = require('http');
-const swig = require('swig');
 const mongoose = require('mongoose');
 
 const db = mongoose.connect( credentials.db_host, {
@@ -19,8 +18,7 @@ db.on('error', function (err) {
 const app = express();
 const server = http.createServer(app);
 
-app.engine('html', swig.renderFile);
-app.set('view engine', 'html');
+app.set('view engine', 'ejs');
 app.set('views', './web');
 
 app.use('/public', express.static('./web/public'));
@@ -38,7 +36,7 @@ load('models',{cwd: 'app'})
 .into( app );
 
 app.get('/', (req, res) => {
-   res.render('index.html');
+   res.render('index.ejs');
 })
 
 server.listen( credentials.port )

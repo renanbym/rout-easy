@@ -35,7 +35,7 @@
                 name: $scope.form.value.name
                 , weight: $scope.form.value.weight
                 , address: {
-                    address: add_details[1].long_name+', '+add_details[0].long_name+', '+add_details[2].long_name
+                    street: add_details[1].long_name+', '+add_details[0].long_name+', '+add_details[2].long_name
                     , city: add_details[3].long_name
                     , state: add_details[4].long_name
                     , country: add_details[5].long_name

@@ -4,7 +4,7 @@
     angular.module('RoutEasy')
     .service('API', api);
 
-    function api($resource,$http) {
+    function api($http) {
 
         return{
 
