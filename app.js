@@ -19,11 +19,12 @@ db.on('error', function (err) {
 const app = express();
 const server = http.createServer(app);
 
-app.engine('html', swig.renderFile)
-app.set('view engine', 'html')
-app.set('views', './web/views')
+app.engine('html', swig.renderFile);
+app.set('view engine', 'html');
+app.set('views', './web');
 
 app.use('/public', express.static('./web/public'));
+app.use('/node_modules', express.static('./node_modules'));
 app.disable('x-powered-by');
 app.set('trust proxy', 1);
 

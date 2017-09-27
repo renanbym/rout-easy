@@ -1,85 +1,121 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title></title>
-    </head>
-    <body>
+<html ng-app="RoutEasy">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Challenge para desenvolvedor Full Stack</title>
 
-<div class="pure-g">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css"
+  integrity="sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ=="
+  crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"
+  integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log=="
+  crossorigin=""></script>
 
-    <div class="pure-u-3-12">
+  <link href='https://api.mapbox.com/mapbox-gl-js/v0.40.0/mapbox-gl.css' rel='stylesheet' />
 
-        <form class="pure-form pure-form-aligned pure-g">
-        <fieldset>
-            <div class="pure-control-group pure-u-1">
-                <label for="name">Username</label>
-                <input id="name" type="text" class="pure-input-1" placeholder="Username">
-                <span class="pure-form-message-inline">This is a required field.</span>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+  <link rel="stylesheet" href="/public/css/style.css" />
+</head>
+
+<body ng-cloak  ng-controller="AppCtrl as adsadsadasdsa">
+
+  <div class="container-fluid">
+    <div class="row justify-content-center justify-content-md-center justify-content-lg-center">
+      <div class="col-4 content--form " ng-controller="FormCtrl as form">
+
+        <form  name="formDelivery" ng-submit="form.submit()" >
+
+          <fieldset>
+            <div class="form-group">
+              <input  class="form-control" type="text" placeholder="Nome" ng-model="form.value.name" required>
             </div>
 
-            <div class="pure-control-group">
-                <label for="password">Password</label>
-                <input id="password" class="pure-input-1" type="password" placeholder="Password">
+            <div class="form-group">
+              <input class="form-control" type="number" placeholder="Peso da Entrega" ng-model="form.value.weight" required>
             </div>
 
-            <div class="pure-control-group">
-                <label for="email">Email Address</label>
-                <input id="email" class="pure-input-1" type="email" placeholder="Email Address">
+            <div class="form-group">
+              <input class="form-control" type="text" placeholder="Endereço do cliente" ng-model="form.value.address" required googleplace >
             </div>
 
-            <div class="pure-control-group  pure-u-1">
-                <input id="foo" type="text" class="pure-input-6-12" placeholder="Enter something here...">
-                <input id="foo" type="text" class="pure-input-6-12" placeholder="Enter something here...">
+            <div class="form-group">
+              <div class="form-row">
+                <div class="col">
+                  <input  class="form-control" type="text"  ng-model="form.value.longitude" placeholder="longitude" readonly>
+                </div>
+                <div class="col">
+                  <input  class="form-control" type="text"   ng-model="form.value.latitude" placeholder="latitude" readonly>
+                </div>
+              </div>
             </div>
 
-            <div class="pure-controls">
-                <label for="cb" class="pure-checkbox">
-                    <input id="cb" type="checkbox"> I've read the terms and conditions
-                </label>
-
-                <button type="submit" class="pure-button pure-button-primary">Submit</button>
+            <div class="form-group">
+                <button class="col btn btn-info" type="submit"   >Cadastrar cliente</button>
             </div>
-        </fieldset>
-    </form>
 
-    </div>
+          </fieldset>
+        </form>
 
-    <div class="pure-u-9-12">
+        <button class="col btn btn-danger" ng-click="form.reset()">Resetar cliente</button>
 
-        <div class="pure-1">
-            <img src="http://lorempixel.com/800/200" alt="">
+      </div>
+
+      <div class="col-8 content--map ">
+
+        <div id="mapid" class=""></div>
+
+        <div class="col">
+          <p>Total Cliente: {{ adsadsadasdsa.total_clientes }} - Peso Total: {{adsadsadasdsa.total_peso}} kg - Total Médio {{ adsadsadasdsa.total_peso / adsadsadasdsa.total_clientes }}</p>
         </div>
 
-        <div class="pure-1">
+        <table class="col table table-striped table-bordered table-inverse  ">
+
+          <thead class="col ">
+            <tr>
+              <th>Nome</th>
+              <th>Endereço</th>
+              <th>Cidade</th>
+              <th>Pais</th>
+              <th>Peso</th>
+              <th>Lat</th>
+              <th>Long</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
 
 
-            <table class="pure-table">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Make</th>
-                        <th>Model</th>
-                        <th>Year</th>
-                    </tr>
-                </thead>
+          <tbody  class="col ">
+            <tr ng-if="!adsadsadasdsa.deliveries.length">
+              <td colspan="8"> Nenhuma entrega cadastrada</td>
+            </tr>
 
-                <tbody>
-                    <tr class="pure-table-odd">
-                        <td>1</td>
-                        <td>Honda</td>
-                        <td>Accord</td>
-                        <td>2009</td>
-                    </tr>
-                </tbody>
-            </table>
+            <tr ng-repeat="delivery in adsadsadasdsa.deliveries" >
+              <td>{{delivery}}</td>
+              <td>{{delivery.address.address}}</td>
+              <td>{{delivery.address.city}}</td>
+              <td>{{delivery.address.country}}</td>
+              <td>{{delivery.weight}} kg</td>
+              <td>{{delivery.address.latitude}}</td>
+              <td>{{delivery.address.longitude}}</td>
+              <td><span ng-click="adsadsadasdsa.delete(delivery)" class="badge badge-danger badge-pill hoverable">×</span></td>
+            </tr>
+          </tbody>
+        </table>
 
-
-        </div>
-
+      </div>
     </div>
+  </div>
 
-</div>
 
-    </body>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD4ctpdtN3U1kDAprCOdBcv_n2aRQ7dgTc&libraries=places" type="text/javascript"></script>
+
+  <script src="/node_modules/angular/angular.js"></script>
+  <script src="/node_modules/angular-resource/angular-resource.min.js"></script>
+  <script src="/public/js/app.js"></script>
+  <script src="/public/js/directives/googleplace.directive.js"></script>
+  <script src="/public/js/controllers/app.controller.js"></script>
+  <script src="/public/js/controllers/form.controller.js"></script>
+  <script src="/public/js/services/api.service.js"></script>
+</body>
 </html>

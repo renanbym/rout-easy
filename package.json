@@ -4,21 +4,26 @@
   "description": "Challenge for development ",
   "main": "app.js",
   "scripts": {
-    "start": "NODE_ENV=production nodemon app.js"
-    ,"dev": "NODE_ENV=development nodemon app.js"
-    ,"test": "./node_modules/mocha/bin/mocha --reporter spec --timeout 7000"
+    "start": "NODE_ENV=production nodemon app.js",
+    "dev": "NODE_ENV=development nodemon app.js",
+    "test": "./node_modules/mocha/bin/mocha --reporter spec --timeout 7000"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/renanbym/rout-easy.git"
   },
-  "author": "renanbym@gmail.com",
+  "engines": {
+    "node": "6.10.2"
+  },
+  "author": "Renan Mariano <renanbym@gmail.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/renanbym/rout-easy/issues"
   },
   "homepage": "https://github.com/renanbym/rout-easy#readme",
   "dependencies": {
+    "angular": "^1.6.6",
+    "angular-resource": "^1.6.6",
     "body-parser": "^1.18.2",
     "express": "^4.15.4",
     "express-load": "^1.1.16",
