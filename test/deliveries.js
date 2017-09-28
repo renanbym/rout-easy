@@ -23,6 +23,7 @@ describe('Deliveries ', () => {
             let delivery = {
                 address: {
                     street: 'Rua Araruna, 75'
+                    , state: 'São Paulo'
                     , city: 'Guarulhos'
                     , country: 'Brazil'
                 }
