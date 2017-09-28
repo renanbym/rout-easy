@@ -21,13 +21,10 @@ describe('Deliveries ', () => {
         it('does not return the POST, because undefined fields', (done) => {
 
             let delivery = {
-                name: 'Renan Mariano'
-                ,address: {
+                address: {
                     street: 'Rua Araruna, 75'
                     , city: 'Guarulhos'
                     , country: 'Brazil'
-                    , latitude: '-23.4572661'
-                    , longitude: '-46.514908'
                 }
             }
 
@@ -38,6 +35,16 @@ describe('Deliveries ', () => {
                 res.should.have.status(401);
                 res.body.status.should.be.equal('error');
                 res.body.message.should.be.a('object');
+                res.body.message.should.have.property('weight');
+                res.body.message.weight.should.have.property('kind').eql('required');
+                res.body.message.should.have.property('name');
+                res.body.message.name.should.have.property('kind').eql('required');
+                res.body.message.should.have.property('address.latitude');
+                res.body.message['address.latitude'].should.have.property('kind').eql('required');
+                res.body.message.should.have.property('address.longitude');
+                res.body.message['address.longitude'].should.have.property('kind').eql('required');
+
+
                 done();
             });
 

@@ -1,6 +1,5 @@
 (function () {
 
-    const accessToken = "pk.eyJ1IjoicmVuYW5ieW0iLCJhIjoiY2o4MTJnNXRmNm4zNDJxcW4xeHowaWNwZCJ9.-OT7CNYkkvgyi9Civ3wW-Q";
 
     angular.module('RoutEasy')
     .controller('AppCtrl', AppCtrl);

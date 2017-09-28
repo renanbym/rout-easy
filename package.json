@@ -4,7 +4,7 @@
   "description": "Challenge for development ",
   "main": "app.js",
   "scripts": {
-    "start": "NODE_ENV=production nodemon app.js",
+    "start": "./node_modules/mocha/bin/mocha --reporter spec --timeout 7000 NODE_ENV=production nodemon app.js",
     "dev": "NODE_ENV=development nodemon app.js",
     "test": "./node_modules/mocha/bin/mocha --reporter spec --timeout 7000"
   },
@@ -29,7 +29,8 @@
     "express": "^4.15.4",
     "express-load": "^1.1.16",
     "http": "0.0.0",
-    "mongoose": "^4.11.12"
+    "mongoose": "^4.11.12",
+    "mongoose-double": "0.0.1"
   },
   "devDependencies": {
     "chai": "^4.1.2",
