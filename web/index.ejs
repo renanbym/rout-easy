@@ -32,7 +32,7 @@
             </div>
 
             <div class="form-group">
-              <input class="form-control" type="text" placeholder="Peso da Entrega: 0.00" ng-model="form.value.weight" required>
+              <input class="form-control" type="text" placeholder="Peso da Entrega: 0.00" format="number"  ng-model="form.value.weight" awnum num-sep="." num-thousand-sep="," num-append=" kg" num-int="6" num-fract="3" num-thousand="true" num-fixed="true" required>
             </div>
 
             <div class="form-group">
@@ -110,6 +110,7 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD4ctpdtN3U1kDAprCOdBcv_n2aRQ7dgTc&libraries=places" type="text/javascript"></script>
   <script src="/node_modules/angular/angular.js"></script>
   <script src="/node_modules/angular-resource/angular-resource.min.js"></script>
+  <script src="/node_modules/angular-dynamic-number/release/dynamic-number.min.js"></script>
   <script src="/public/js/app.js"></script>
   <script src="/public/js/directives/googleplace.directive.js"></script>
   <script src="/public/js/controllers/app.controller.js"></script>
